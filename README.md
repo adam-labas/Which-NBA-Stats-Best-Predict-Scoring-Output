@@ -11,6 +11,7 @@ In this repository, you will have all of the data and code I used to produce fin
 In this repository, you will find:
 
 Inputs: Here, you will fine the raw data that was used for this analysis, as well as the cleaned and filtered csv which were created in the course of my analysis.
+
 Outputs: Here are the things that I've created with the inputs. This includes
 - The reference file
 - The RMarkdown Pdf document
