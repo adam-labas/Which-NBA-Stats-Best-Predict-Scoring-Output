@@ -1,62 +1,90 @@
 ---
-title: "TEST Ttitle for first commit"
-subtitle: "My subtitle if needed"
+title: "What Nba Players Statistics Best Predict Scoring Output."
+subtitle: "A Look Into The Metrics Which Best Predit Scoring Output Among NBA Players From The 2020-21 Season."
 author: 
-  - First author
-  - Another author
-thanks: "Code and data are available at: LINK."
+  - Adam Labas
+thanks: "Code and data are available at: https://github.com/adam-labas/Which-NBA-Stats-Best-Predict-Scoring-Output."
 date: "`r format(Sys.time(), '%d %B %Y')`"
-abstract: "First sentence. Second sentence. Third sentence. Fourth sentence."
+abstract: "First sentence. Second sentence. Third sentence. Fourth sentence.\\par\\textbf{Keywords:}NBA, PTS, REB, AST, MIN, FGA, X3PM"
 output:
   bookdown::pdf_document2
-toc: FALSE
+toc: TRUE
 bibliography: references.bib
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-
+# install.packages("tinytex")
+#tinytex::install_tinytex()
+#install.packages("kabeExtra")
+#library(tinytex)
 library(tidyverse)
-library(palmerpenguins)
+library(janitor)
+library(dplyr)
+library(tidyr)
+library(knitr)
+library(patchwork)
+library(lubridate)
+library(kableExtra)
+
+raw_data <- read_csv("C:/Users/adaml/OneDrive/Documents/a Fall 2021 + Winter 2022/aWinter 2022/1 - STA304/Which-NBA-Stats-Best-Predict-Scoring-Output/inputs/data/raw.csv")
+
+training_data <- read_csv("C:/Users/adaml/OneDrive/Documents/a Fall 2021 + Winter 2022/aWinter 2022/1 - STA304/Which-NBA-Stats-Best-Predict-Scoring-Output/inputs/data/train.csv")
+
+test_data <- read.csv("C:/Users/adaml/OneDrive/Documents/a Fall 2021 + Winter 2022/aWinter 2022/1 - STA304/Which-NBA-Stats-Best-Predict-Scoring-Output/inputs/data/test.csv")
 ```
 
 # Introduction
 
-You can and should cross-reference sections and sub-sections. For instance, Section \@ref(data). R Markdown automatically makes the sections lower case and adds a dash to spaces to generate labels, for instance, Section \@ref(first-discussion-point). 
+<!-- You can and should cross-reference sections and sub-sections. For instance, Section \@ref(data). R Markdown automatically makes the sections lower case and adds a dash to spaces to generate labels, for instance, Section \@ref(first-discussion-point).  -->
+
+The NBA has for long been a widely admired and celebrated facet of American popular culture. Every season, the average fan has the opportunity to watch the best players on the face of the earth go at each other, night after night, in nail-biting intensity. As an avid fan of the NBA, I too am a consumer of the NBA and its professional basketball content. This became foundational in my life in 2019 when my hometown Toronto Raptors had an amazing run in the playoffs and won the NBA championship. The NBA is well known for being a league full of tall players and as my data suggests, this is true. However, the Toronto Raptors team that won the NBA finals had two relatively short players: Fred VanVleet and Kyle Lowry. Being a relatively short man myself, I was mesmerized by their abilities to perform at the highest level and their abilities to score the basketball and impact the game. As such, in this Paper, I attempt to explore the true parameters which contribute to players scoring output.
+
+As the new 2021-2022 NBA season started on October 19th 2021, it was reminiscing and was thinking about traditionally short players and their ability to score the basketball with ease. It is counter intuitive to me to think that a player that is 185 cm and 89kg like VanVleet can score with ease on a player that is much taller and heavier than him.
+
+If a player like VanVleet, lacking in height can score the ball with ease, what are actually the qualities and traits which contribute statistically to players being able to score more points per game? In statistical terms what predictors best describe the points per game of an NBA player in the 2020-21 season? We aim to answer this question by developing a simple, yet effective and easy to understand model.
 
 
 
 # Data
+In this Data Section \@ref(data), I will provide a look into the data acquisition and processing methodology as well as a deep dive into the contents of the data. We will also touch on our exploratory data analysis as it pertains to variable selection and lastly we will discuss the reach of the data. 
+
+First of, (Table \@ref(tab:tableofdata)) give us a glimpse of the data.
+
+```{r tableofdata, fig.cap = "Glimps of the some of the data we're working with",fig.pos = "!H",echo = FALSE, message = FALSE, warning = FALSE, out.width = '80%', fig.align = "center"}
+raw_data %>% 
+  select(PLAYER, PTS, REB, AGE, MIN, FGA, X3PM, KG, CM) %>% 
+  slice(1:10) %>% 
+  kable(
+    caption = "First ten rows of a dataset of shelture usage without All Population",
+    col.names = c("Player", "Points", "Rebounds", "Age", "Minutes", "Field Goal Attempts", "3PTS Made","Weight", "Height"),
+    digits = 1,
+    booktabs = TRUE,
+    linesep = "",
+    ) %>%
+  kable_styling(latex_options = "HOLD_position")
+```
+
+## Data Collection
+All the data used in this analysis was retrieved directly from the NBA's website and used in accordance with their terms and conditions (more on this in section \@ref(limitations-and-weaknesses)). The data on the NBA's website is displayed on 11 different pages each containing 50 players except for the last page which only contains 36 players. The data is available online as an HTML table. As a result, I used a Google Chrome web browser extension titled **Dowload Table as CSV** to extract the data into 11 CSV files. More information on the Google Chrome extension and the source code that makes it work can be found at the following git repository: https://github.com/arktiv/table-csv-chrome. After appending all the player data into one dataframe, we now have a dataset 
+
 
 Our data is of penguins (Figure \@ref(fig:bills)).
 
-```{r bills, fig.cap="Bills of penguins", echo = FALSE}
-ggplot(penguins, aes(x = island, fill = species)) +
-  geom_bar(alpha = 0.8) +
-  scale_fill_manual(values = c("darkorange","purple","cyan4"),
-                    guide = FALSE) +
-  theme_minimal() +
-  facet_wrap(~species, ncol = 1) +
-  coord_flip()
-```
+## EDA: Exploratory Data Analysis
+As was stated in the Introduction Section \@ref(introduction), the aim of this analysis is to find a parsimonious model
 
-Talk more about it.
 
-Also bills and their average (Figure \@ref(fig:billssssss)). (Notice how you can change the height and width so they don't take the whole page?)
 
-```{r billssssss, fig.cap="More bills of penguins", echo = FALSE, fig.width=8, fig.height=4}
+As a result, I had originally decided to study the relationship between the Age, Height and Weight and the number of points scored. When plotting my data, I noticed that there was not a linear relationship between the predictor variables I chose to study and the response variable. As a result, I modified my research question to instead study the relationship between points per game (PTS) to minutes per game and assists per game as this will indirectly answer the question I had originally intended to answer. I will be able to make this link once I find data on the positions of players and demonstrate that players with smaller heights are almost always players with positions that traditionally have a lot of assists like the Point Guard.
 
-# This needs to be about the random data tha tI sasmpled?
-ggplot(penguins, aes(x = island, fill = species)) +
-  geom_bar(alpha = 0.8) +
-  scale_fill_manual(values = c("darkorange","purple","cyan4"),
-                    guide = FALSE) +
-  theme_minimal() +
-  facet_wrap(~species, ncol = 1) +
-  coord_flip()
-```
+I think that any analysis which gives an insight on which players are prone to producing the most points is always useful and an have impacts in many fields such as the world of sports gambling and especially fantasy sports. Although I am not a gambler myself, I am an aspiring actuary and data analyst and I find pleasure in being able to bring forth simple results from large complex datasets.
 
-Talk way more about it. 
+## Population, Frame or Sample
+
+It is important to discuss the reach of our data as this will have an effect on the generalizability of our Model. 
+As previously mentioned, the City of Toronto funds services for people experience homelessness and the data we have acquired for this paper reflects all the data collected in the SMIS system in the years 2020 and 2021. This is important because it brings to light one of the first limitations of the data which we will discuss more in Section \@ref(limitations). Although the SMIS data is quite expansive with 323 data points, it fails to capture the entire population of homeless people in the city of Toronto as it does not take into consideration homeless people who sleep on the street or those only using services which are not government funded. Thus, in this paper, we are only deal with a sample of the population, but a big one nonetheless.
+
 
 
 
@@ -68,7 +96,6 @@ Pr(\theta | y) = \frac{Pr(y | \theta) Pr(\theta)}{Pr(y)}  (\#eq:bayes)
 
 Equation \@ref(eq:bayes) seems useful, eh?
 
-Here's a dumb example of how to use some references: In paper we run our analysis in `R` [@citeR]. We also use the `tidyverse` which was written by @thereferencecanbewhatever If we were interested in baseball data then @citeLahman could be useful. 
 
 We can use maths by including latex between dollar signs, for instance $\theta$.
 
@@ -79,15 +106,15 @@ We can use maths by including latex between dollar signs, for instance $\theta$.
 
 ## First discussion point
 
-If my paper were 10 pages, then should be be at least 2.5 pages. The discussion is a chance to show off what you know and what you learnt from all this. 
-
 ## Second discussion point
 
 ## Third discussion point
 
-## Weaknesses and next steps
+## Limitations And Weaknesses
 
-Weaknesses and next steps should also be included.
+## Next Steps
+
+itll be intersting to see how our model changes potentially if we only include players that meet a certiann threshhold. Like maybe only players who have playes x many games or shoot at least 5 times.
 
 \newpage
 
