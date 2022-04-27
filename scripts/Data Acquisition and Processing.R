@@ -25,21 +25,18 @@ raw_data <- read.csv("inputs/data/raw_data.csv")
 # Correct for a bug that changes the first header name.
 names(raw_data)[1]<- "PLAYER"
 
+# Clean the raw data and take the desired variables.
 cleaned_raw_data <- raw_data[,c(3, 4, 8, 9, 11, 13, 21, 22,31,32,33)]
 final_raw_data = cleaned_raw_data[c(1,4,2,3,5,6,7,8,9,10)]
 
-
-
-
-
-
+# Save the final raw data.
 write.csv(x = final_raw_data,
           file = "inputs/data/final_raw.csv")
 
 # Set the Seed
 set.seed(866)
 
-
+# Split the data into the training and test set.
 data_split <- initial_split(data = final_raw_data, prop = 0.80)
 
 training_data <- training(data_split)
