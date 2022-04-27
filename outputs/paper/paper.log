@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.4.19)  27 APR 2022 01:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.4.19)  27 APR 2022 04:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -574,7 +574,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has 
                                                   \__shipout_drop_firstpage_...
 l.163 
       ] [4]
-<paper_files/figure-latex/unnamed-chunk-1-1.pdf, id=126, 469.755pt x 325.215pt>
+<paper_files/figure-latex/unnamed-chunk-1-1.pdf, id=116, 469.755pt x 325.215pt>
 File: paper_files/figure-latex/unnamed-chunk-1-1.pdf Graphic file (type pdf)
 <use paper_files/figure-latex/unnamed-chunk-1-1.pdf>
 Package pdftex.def Info: paper_files/figure-latex/unnamed-chunk-1-1.pdf  used on input line 171.
@@ -582,32 +582,37 @@ Package pdftex.def Info: paper_files/figure-latex/unnamed-chunk-1-1.pdf  used on
 
 LaTeX Warning: Reference `Model' on page 5 undefined on input line 173.
 
-[5 <./paper_files/figure-latex/unnamed-chunk-1-1.pdf>]
-<paper_files/figure-latex/unnamed-chunk-3-1.pdf, id=139, 469.755pt x 325.215pt>
+[5 <./paper_files/figure-latex/unnamed-chunk-1-1.pdf>] [6]
+<paper_files/figure-latex/unnamed-chunk-3-1.pdf, id=140, 469.755pt x 325.215pt>
 File: paper_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file (type pdf)
 <use paper_files/figure-latex/unnamed-chunk-3-1.pdf>
-Package pdftex.def Info: paper_files/figure-latex/unnamed-chunk-3-1.pdf  used on input line 241.
-(pdftex.def)             Requested size: 375.80452pt x 260.17235pt.
-[6] [7 <./paper_files/figure-latex/unnamed-chunk-3-1.pdf>] [8] [9] (./paper.aux)
+Package pdftex.def Info: paper_files/figure-latex/unnamed-chunk-3-1.pdf  used on input line 295.
+(pdftex.def)             Requested size: 352.31538pt x 243.91064pt.
+<paper_files/figure-latex/unnamed-chunk-4-1.pdf, id=141, 469.755pt x 325.215pt>
+File: paper_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (type pdf)
+<use paper_files/figure-latex/unnamed-chunk-4-1.pdf>
+Package pdftex.def Info: paper_files/figure-latex/unnamed-chunk-4-1.pdf  used on input line 301.
+(pdftex.def)             Requested size: 352.31538pt x 243.91064pt.
+[7 <./paper_files/figure-latex/unnamed-chunk-3-1.pdf> <./paper_files/figure-latex/unnamed-chunk-4-1.pdf>] [8] [9] [10] [11] (./paper.aux)
 
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `paper.out' has not changed.
-(rerunfilecheck)             Checksum: 6EC771B8B4F297C836CF378850553C7F;2180.
+(rerunfilecheck)             Checksum: DE6ECA1A2DDEFFD3DADD69209A9D2F6D;1865.
  ) 
 Here is how much of TeX's memory you used:
- 12733 strings out of 480198
- 202915 string characters out of 5891664
- 498826 words of memory out of 5000000
- 30404 multiletter control sequences out of 15000+600000
+ 12739 strings out of 480198
+ 203262 string characters out of 5891664
+ 498785 words of memory out of 5000000
+ 30409 multiletter control sequences out of 15000+600000
  535662 words of font info for 79 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 60i,9n,63p,1477b,392s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}<c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx9.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb>
-Output written on paper.pdf (9 pages, 1571463 bytes).
+ 60i,9n,63p,1477b,325s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}<c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx9.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb>
+Output written on paper.pdf (11 pages, 1611805 bytes).
 PDF statistics:
- 275 PDF objects out of 1000 (max. 8388607)
- 231 compressed objects within 3 object streams
+ 290 PDF objects out of 1000 (max. 8388607)
+ 240 compressed objects within 3 object streams
  57 named destinations out of 1000 (max. 500000)
- 139 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 128 words of extra memory for PDF output out of 10000 (max. 10000000)
 

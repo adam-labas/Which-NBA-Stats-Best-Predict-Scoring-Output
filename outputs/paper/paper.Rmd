@@ -141,6 +141,13 @@ Variable | Mean (Standard Deviation) In Training | Mean (Standard Deviation) In 
 ---------|-------------------------|--------------------
 `r names(test_data)[3]` | `r round(mtr[1],5)` (`r round(sdtr[1],5)`) | `r round(mtest[1],5)` (`r round(sdtest[1],5)`)
 `r names(test_data)[4]` | `r round(mtr[2],5)` (`r round(sdtr[2],5)`) | `r round(mtest[2],5)` (`r round(sdtest[2],5)`)
+`r names(test_data)[5]` | `r round(mtr[3],5)` (`r round(sdtr[3],5)`) | `r round(mtest[3],5)` (`r round(sdtest[3],5)`)
+`r names(test_data)[6]` | `r round(mtr[4],5)` (`r round(sdtr[4],5)`) | `r round(mtest[4],5)` (`r round(sdtest[4],5)`)
+`r names(test_data)[7]` | `r round(mtr[5],5)` (`r round(sdtr[5],5)`) | `r round(mtest[5],5)` (`r round(sdtest[5],5)`)
+`r names(test_data)[8]` | `r round(mtr[6],5)` (`r round(sdtr[6],5)`) | `r round(mtest[6],5)` (`r round(sdtest[6],5)`)
+`r names(test_data)[9]` | `r round(mtr[7],5)` (`r round(sdtr[7],5)`) | `r round(mtest[7],5)` (`r round(sdtest[7],5)`)
+`r names(test_data)[10]` | `r round(mtr[8],5)` (`r round(sdtr[8],5)`) | `r round(mtest[8],5)` (`r round(sdtest[8],5)`)
+`r names(test_data)[11]` | `r round(mtr[9],5)` (`r round(sdtr[9],5)`) | `r round(mtest[9],5)` (`r round(sdtest[9],5)`)
 
 As we can see from Table 2, the values for both the mean and the standard deviation of all the predictors are almost identical and there is little to no difference as expected.Now, to create a baseline for our model, lets create a model with all of the predictors. We call this model mod_full.
 
@@ -162,38 +169,66 @@ We see that the adjusted R squared is equal to 97.18%. This is a very high numbe
 ## Checking for Model Violations
 The next thing we will do is look for possible model violations. first, lets plot pairwise plots of the predictors and look for any possible evidence of colinearity.
 
-```{r, echo = F, out.width = '80%', fig.align = "center"}
+```{r, echo = F, out.width = '75%', fig.align = "center"}
 pairs(training_data[,-c(1:3)])
 ```
 We see very clearly that there is a strong colinearity between minutes played and field goal attempts and between weight and height. We can also see that there is no significant linear relationship between the other pairs of variables. 
 
-Lets conduct another test to determine if we will need to transform our data (reponce and/or predictors).
+Lets conduct another test to determine if we will need to transform our data (response and/or predictors).
 
-```{r}
-
+```{r, echo = F, out.width = '75%', fig.align = "center"}
+plot(training_data$PTS ~ fitted(mod_full), main = "Y vs Fitted", xlab = "Fitted Values", ylab = "Points Per Game")
+lines(lowess(training_data$PTS ~ fitted(mod_full)), lty = 2 )
+abline(a = 0, b = 1)
 ```
+We see that the points of the Y versus Y hat (fitted values) graph follow very closely to the line of function f(x) = x. 
+
+With all the information gathered in the previous steps, we have come to our final model, mod_final:
+
+```{r, echo = F}
+mod_final = lm(formula = PTS ~ FGA+REB+KG, data = training_data)
+a = summary(mod_final)
+extract_eq(mod_final)
+```
+
+Model Name | R Squared | Adjusted R Squared
+---------|-------------------------|--------------------
+`r "mod_final"` | `r as.numeric(summary(mod_final)[8])`| `r as.numeric(summary(mod_final)[9])`
+
 
 
 # Results
+In this Section \@ref(results), we we look at the information gathered in Section \@ref(model) and we will objectively describe the events that transpired.
 
-```{r}
+Our first result from Section \@ref(model) is the fact that when we plotted the summaries in Table 2, there was little to no difference between the values of the means and standard deviations for the training and test dataset. This is what we expect. If we take a closer look into it, we see that the biggest different between two values from the training and test datasets is a value of the means of weight which differ by 1.26389 KG.
 
-```
+Next, we collected data for mod_full. We notice that the adjusted R squared fro mod_full is very high at 97.18%. If we run a summary for mod_full, we can see that rebounds and field goal attempts are two of the predictors with the three asterisk beside them. This means that they are being listed as having statistically significant p-values. This contributed to the two variables being implemented in the final model.
 
+When we moved on to looking at the potential model violations, we started by examining the pairwise plots of the predictors. We notice that there is a strong linear correlation between minutes played and field goal attempts and between weight and height. Another thing we notice is that there is some fanning effect in some of the plots. This is often associated with a potential violation of constant error variance. This is known as a violation of Homoscedasticity. This can be observed in a lot of the plots such as the one between minutes and 3 points made, minutes and rebounds, minutes and assists and others.
+
+Lastly, we compare the plot of of Y vs the fitted values with the function f(x) = x. We notice a very pure trend and the values follow very closely to the function f(x).
+
+This brings us to the establishment of the final model, mod_final. We conclude that the final model is that in equation (2). The parameters in mod_final are as follows:
+
+$$\alpha = -2.661466$$
+
+$$beta{1} = 1.266497$$
+
+$$\beta_{2} = 0.177978$$
+
+$$\beta_{3} = 0.018937$$
+\pagebreak
 
 # Discussion
+When we have a look at the results from the later Section \@ref(results), we notice that a lot can be done to further the analysis. The following is my personal explanation and speculation for why many of the observations were observed as well as some discussion on the limitations and weaknesses of this analysis and finally some next steps that can be taken to improve the analysis in a future iteration.
 
-## First discussion point
-
-## Second discussion point
-
-## Third discussion point
+We started this analysis because we wanted to determine weather or not height was a reliable predictor for determining the scoring production of NBA players. At surface value, if we simply look at the final model which we produced, we notice that 
 
 ## Limitations And Weaknesses
 
 ## Next Steps
 
-itll be intersting to see how our model changes potentially if we only include players that meet a certiann threshhold. Like maybe only players who have playes x many games or shoot at least 5 times.
+itll be interesting to see how our model changes potentially if we only include players that meet a certain threshold. Like maybe only players who have playes x many games or shoot at least 5 times.
 
 \newpage
 
