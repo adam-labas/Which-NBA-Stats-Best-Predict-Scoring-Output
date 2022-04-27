@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.4.19)  27 APR 2022 04:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.4.27)  27 APR 2022 13:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **paper.tex
 (./paper.tex
 LaTeX2e <2021-11-15> patch level 1
-L3 programming layer <2022-04-10> (c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/article.cls
+L3 programming layer <2022-04-20> (c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
 (c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
@@ -433,7 +433,7 @@ Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
 \c@nlinenum=\count305
 \TeXr@lab=\toks35
 ) (c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-File: l3backend-pdftex.def 2022-04-14 L3 backend support: PDF output (pdfTeX)
+File: l3backend-pdftex.def 2022-04-20 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count306
 \l__pdf_internal_box=\box72
 ) (./paper.aux)
@@ -572,47 +572,95 @@ Overfull \hbox (14.95503pt too wide) in paragraph at lines 135--151
 pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.163 
-      ] [4]
-<paper_files/figure-latex/unnamed-chunk-1-1.pdf, id=116, 469.755pt x 325.215pt>
+l.161 
+      ]
+<paper_files/figure-latex/unnamed-chunk-1-1.pdf, id=113, 469.755pt x 325.215pt>
 File: paper_files/figure-latex/unnamed-chunk-1-1.pdf Graphic file (type pdf)
 <use paper_files/figure-latex/unnamed-chunk-1-1.pdf>
 Package pdftex.def Info: paper_files/figure-latex/unnamed-chunk-1-1.pdf  used on input line 171.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
-LaTeX Warning: Reference `Model' on page 5 undefined on input line 173.
+LaTeX Warning: Reference `Model' on page 4 undefined on input line 173.
 
-[5 <./paper_files/figure-latex/unnamed-chunk-1-1.pdf>] [6]
-<paper_files/figure-latex/unnamed-chunk-3-1.pdf, id=140, 469.755pt x 325.215pt>
+[4 <./paper_files/figure-latex/unnamed-chunk-1-1.pdf>] [5] [6]
+<paper_files/figure-latex/unnamed-chunk-3-1.pdf, id=141, 469.755pt x 325.215pt>
 File: paper_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file (type pdf)
 <use paper_files/figure-latex/unnamed-chunk-3-1.pdf>
 Package pdftex.def Info: paper_files/figure-latex/unnamed-chunk-3-1.pdf  used on input line 295.
 (pdftex.def)             Requested size: 352.31538pt x 243.91064pt.
-<paper_files/figure-latex/unnamed-chunk-4-1.pdf, id=141, 469.755pt x 325.215pt>
+<paper_files/figure-latex/unnamed-chunk-4-1.pdf, id=142, 469.755pt x 325.215pt>
 File: paper_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (type pdf)
 <use paper_files/figure-latex/unnamed-chunk-4-1.pdf>
 Package pdftex.def Info: paper_files/figure-latex/unnamed-chunk-4-1.pdf  used on input line 301.
 (pdftex.def)             Requested size: 352.31538pt x 243.91064pt.
-[7 <./paper_files/figure-latex/unnamed-chunk-3-1.pdf> <./paper_files/figure-latex/unnamed-chunk-4-1.pdf>] [8] [9] [10] [11] (./paper.aux)
+[7 <./paper_files/figure-latex/unnamed-chunk-3-1.pdf> <./paper_files/figure-latex/unnamed-chunk-4-1.pdf>]
+<paper_files/figure-latex/unnamed-chunk-6-1.pdf, id=164, 469.755pt x 325.215pt>
+File: paper_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file (type pdf)
+<use paper_files/figure-latex/unnamed-chunk-6-1.pdf>
+Package pdftex.def Info: paper_files/figure-latex/unnamed-chunk-6-1.pdf  used on input line 331.
+(pdftex.def)             Requested size: 375.80452pt x 260.17235pt.
+[8
+pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.341 
+       <./paper_files/figure-latex/unnamed-chunk-6-1.pdf>]
+<paper_files/figure-latex/minfga-1.pdf, id=179, 469.755pt x 325.215pt>
+File: paper_files/figure-latex/minfga-1.pdf Graphic file (type pdf)
+<use paper_files/figure-latex/minfga-1.pdf>
+Package pdftex.def Info: paper_files/figure-latex/minfga-1.pdf  used on input line 346.
+(pdftex.def)             Requested size: 305.33713pt x 211.38724pt.
+<paper_files/figure-latex/kgcm-1.pdf, id=180, 469.755pt x 325.215pt>
+File: paper_files/figure-latex/kgcm-1.pdf Graphic file (type pdf)
+<use paper_files/figure-latex/kgcm-1.pdf>
+Package pdftex.def Info: paper_files/figure-latex/kgcm-1.pdf  used on input line 355.
+(pdftex.def)             Requested size: 305.33713pt x 211.38724pt.
+[9
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.362 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.362 
+       <./paper_files/figure-latex/minfga-1.pdf> <./paper_files/figure-latex/kgcm-1.pdf>]
+<paper_files/figure-latex/violation-1.pdf, id=199, 469.755pt x 325.215pt>
+File: paper_files/figure-latex/violation-1.pdf Graphic file (type pdf)
+<use paper_files/figure-latex/violation-1.pdf>
+Package pdftex.def Info: paper_files/figure-latex/violation-1.pdf  used on input line 367.
+(pdftex.def)             Requested size: 305.33713pt x 211.38724pt.
+[10
+pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.386 
+       <./paper_files/figure-latex/violation-1.pdf>] [11] [12] [13] [14]
+Overfull \hbox (22.05115pt too wide) in paragraph at lines 719--720
+[]\T1/lmr/m/n/10 Yes.https://www.nba.com/stats/players/traditional/?sort=PLAYER_NAME&dir=-1&Season=2020-
+ []
+
+[15] [16] [17] [18] (./paper.aux)
 
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `paper.out' has not changed.
-(rerunfilecheck)             Checksum: DE6ECA1A2DDEFFD3DADD69209A9D2F6D;1865.
+(rerunfilecheck)             Checksum: 13F8B2410C91785B642FEFE25CE7B4B0;1835.
  ) 
 Here is how much of TeX's memory you used:
- 12739 strings out of 480198
- 203262 string characters out of 5891664
- 498785 words of memory out of 5000000
- 30409 multiletter control sequences out of 15000+600000
- 535662 words of font info for 79 fonts, out of 8000000 for 9000
+ 12851 strings out of 480193
+ 205361 string characters out of 5891561
+ 498904 words of memory out of 5000000
+ 30452 multiletter control sequences out of 15000+600000
+ 536027 words of font info for 80 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 60i,9n,63p,1477b,325s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}<c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx9.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb>
-Output written on paper.pdf (11 pages, 1611805 bytes).
+ 60i,9n,63p,1634b,412s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}<c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx9.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Users/adaml/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb>
+Output written on paper.pdf (18 pages, 1764852 bytes).
 PDF statistics:
- 290 PDF objects out of 1000 (max. 8388607)
- 240 compressed objects within 3 object streams
- 57 named destinations out of 1000 (max. 500000)
- 128 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 430 PDF objects out of 1000 (max. 8388607)
+ 363 compressed objects within 4 object streams
+ 126 named destinations out of 1000 (max. 500000)
+ 148 words of extra memory for PDF output out of 10000 (max. 10000000)
 
