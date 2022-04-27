@@ -14,10 +14,8 @@ bibliography: references.bib
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-# install.packages("tinytex")
-#tinytex::install_tinytex()
 #install.packages("kabeExtra")
-#library(tinytex)
+#install.packages("equatiomatic")
 library(tidyverse)
 library(janitor)
 library(dplyr)
@@ -26,8 +24,11 @@ library(knitr)
 library(patchwork)
 library(lubridate)
 library(kableExtra)
+library(equatiomatic)
 
 raw_data <- read_csv("C:/Users/adaml/OneDrive/Documents/a Fall 2021 + Winter 2022/aWinter 2022/1 - STA304/Which-NBA-Stats-Best-Predict-Scoring-Output/inputs/data/raw.csv")
+
+final_raw <- read_csv("C:/Users/adaml/OneDrive/Documents/a Fall 2021 + Winter 2022/aWinter 2022/1 - STA304/Which-NBA-Stats-Best-Predict-Scoring-Output/inputs/data/final_raw.csv")
 
 training_data <- read_csv("C:/Users/adaml/OneDrive/Documents/a Fall 2021 + Winter 2022/aWinter 2022/1 - STA304/Which-NBA-Stats-Best-Predict-Scoring-Output/inputs/data/train.csv")
 
@@ -42,14 +43,16 @@ The NBA has for long been a widely admired and celebrated facet of American popu
 
 As the new 2021-2022 NBA season started on October 19th 2021, it was reminiscing and was thinking about traditionally short players and their ability to score the basketball with ease. It is counter intuitive to me to think that a player that is 185 cm and 89kg like VanVleet can score with ease on a player that is much taller and heavier than him.
 
-If a player like VanVleet, lacking in height can score the ball with ease, what are actually the qualities and traits which contribute statistically to players being able to score more points per game? In statistical terms what predictors best describe the points per game of an NBA player in the 2020-21 season? We aim to answer this question by developing a simple, yet effective and easy to understand model.
+If a player like VanVleet, lacking in height can score the ball with ease, what are actually the qualities and traits which contribute statistically to players being able to score more points per game? In statistical terms what predictors best describe the points per game of an NBA player in the 2020-21 season? We aim to answer this question by developing a simple, yet effective and easy to understand model. I had originally decided to study the relationship between the Age, Height and Weight and the number of points scored. When plotting my data, I noticed that there was not a linear relationship between the predictor variables I chose to study and the response variable. As a result, I modified my research question to instead study the relationship between points per game (PTS) to minutes per game and assists per game as this will indirectly answer the question I had originally intended to investigate. I will be able to make this link once I find data on the positions of players and demonstrate that players with smaller heights are almost always players with positions that traditionally have a lot of assists like the Point Guard.
+
+I think that any analysis which gives an insight on which players are prone to producing the most points is always useful and an have impacts in many fields such as the world of sports gambling and especially fantasy sports. Although I am not a gambler myself, I am an aspiring actuary and data analyst and I find pleasure in being able to bring forth simple results from large complex datasets.
 
 
-
+\pagebreak
 # Data
 In this Data Section \@ref(data), I will provide a look into the data acquisition and processing methodology as well as a deep dive into the contents of the data. We will also touch on our exploratory data analysis as it pertains to variable selection and lastly we will discuss the reach of the data. 
 
-First of, (Table \@ref(tab:tableofdata)) give us a glimpse of the data.
+First of, Tables \@ref(tab:tableofdata) and 2 give us a glimpse of the data.
 
 ```{r tableofdata, fig.cap = "Glimps of the some of the data we're working with",fig.pos = "!H",echo = FALSE, message = FALSE, warning = FALSE, out.width = '80%', fig.align = "center"}
 raw_data %>% 
@@ -57,50 +60,126 @@ raw_data %>%
   slice(1:10) %>% 
   kable(
     caption = "First ten rows of a dataset of shelture usage without All Population",
-    col.names = c("Player", "Points", "Rebounds", "Age", "Minutes", "Field Goal Attempts", "3PTS Made","Weight", "Height"),
+    col.names = c("Player", "Points", "Rebounds", "Age", "Minutes", "Field Goal Attempts", "3PM","Weight", "Height"),
     digits = 1,
     booktabs = TRUE,
     linesep = "",
     ) %>%
   kable_styling(latex_options = "HOLD_position")
+
+mtr <- apply(training_data[3:11], 2, mean)
+sdtr <- apply(training_data[3:11], 2, sd)
+
+mtest <- apply(test_data[3:11], 2, mean)
+sdtest <- apply(test_data[3:11], 2, sd)
 ```
 
-## Data Collection
-All the data used in this analysis was retrieved directly from the NBA's website and used in accordance with their terms and conditions (more on this in section \@ref(limitations-and-weaknesses)). The data on the NBA's website is displayed on 11 different pages each containing 50 players except for the last page which only contains 36 players. The data is available online as an HTML table. As a result, I used a Google Chrome web browser extension titled **Dowload Table as CSV** to extract the data into 11 CSV files. More information on the Google Chrome extension and the source code that makes it work can be found at the following git repository: https://github.com/arktiv/table-csv-chrome. After appending all the player data into one dataframe, we now have a dataset 
+## Data Collection & Processing
+All the data used in this analysis was retrieved directly from the NBA's website and used in accordance with their terms and conditions (more on this in section \@ref(limitations-and-weaknesses)). The data on the NBA's website is displayed on 11 different pages each containing 50 players except for the last page which only contains 36 players. The data is available online as an HTML table. As a result, I used a Google Chrome web browser extension titled **Dowload Table as CSV** to extract the data into 11 CSV files. More information on the Google Chrome extension and the source code that makes it work can be found at the following git repository: https://github.com/arktiv/table-csv-chrome. After appending all the player data into one data frame, we now have a dataset with all the official NBA regular season data for the 2020-2021 season.  
 
+The data collected is listed as *Traditional Stats* on the NBA website. In total, there are 31 variables. The type of data that the NBA considers traditional are the data categories which are simple and straight forward to understand. These variables include but are not limited to player name, team, the points per game, games played, number of wins and losses, minutes played, field goals made, field goals attempted, number of 3 points made and rebounds per game. Some variables like the latter are also further broken down into sub-categories like offensive rebounds and defensive rebounds. In Section \@ref(eda-exploratory-data-analysis), I will elaborate on the exploratory data analysis, the driving factor which contributed to variable selection.
 
-Our data is of penguins (Figure \@ref(fig:bills)).
+As far as data processing goes, we began by loading all the necessary libraries like haven [@citekableextra] into R [@citeR]. Additionally, we used a wide variety of libraries like knitr [@citeknitr], tidyverse [@citetidyverse], tidyr [@citetidyr], janitor [@citejanitor], patchwork [@citepatchwork], readr [@citereadr],dplyr [@citetidyr] as well as tinytex [@citetinytex] at some points in the process for data processing and pdf document generation. We removed the unwanted columns as discussed in Section \@ref(eda-exploratory-data-analysis) and then rearranged them for purely aesthetic purposes. Lastly, we created two new data: the training and test data. This will help us extensively in Section \@ref(model) when we are creating the parsimonious model we desire. To do this, we used the initial_split function to determine the proportion of data that would be in the training and test data. There are a few decisions which needed to be made at this step. The first being the seed and the second being the proportion. I decided to set the seed with a value of 866 which are simply the last three digits of my university student number and hold no other meaning within the analysis. For the proportion, i decided on a 80:20 test to training split. There was no math involved in this decision; i simply wanted to give the training model enough data to produce healthy estimates for the model coefficients.
 
+\pagebreak
 ## EDA: Exploratory Data Analysis
-As was stated in the Introduction Section \@ref(introduction), the aim of this analysis is to find a parsimonious model
+As was stated in the Introduction Section \@ref(introduction), the aim of this analysis is to find a parsimonious model which can predict the scoring output of NBA players in the relevant season. It was very clear to me from the beginning of this analysis that a model with 31 variables is far from parsimonious and had that many variables would have to be eliminated from inclusion in the final model. Ultimately, I decided on 8 predictors, those in the final_raw_data dataset. These variables are age, minutes, field goal attempts, number of 3 points made, rebounds, assists, weight and height. These predictors in my opinion will cover a lot of ground and will explain a reasonable amount of the variance in the data.
 
+Below are a few graphs which demonstrate that there is a clear linear correlation between points and many of the selected variables.
+```{r, echo = FALSE, message = FALSE, warning = FALSE, out.width = '100%', fig.align = "center"}
 
+par(mfrow=c(2,3))
+ast_lm <-lm(PTS ~ AST ,data=final_raw)
+plot(final_raw$PTS ~ final_raw$AST,
+main = "Points vs Asissts",
+xlab ="Assist Per Game", ylab ="Points Per Game")
+abline(ast_lm, col="blue", lwd = 4)
 
-As a result, I had originally decided to study the relationship between the Age, Height and Weight and the number of points scored. When plotting my data, I noticed that there was not a linear relationship between the predictor variables I chose to study and the response variable. As a result, I modified my research question to instead study the relationship between points per game (PTS) to minutes per game and assists per game as this will indirectly answer the question I had originally intended to answer. I will be able to make this link once I find data on the positions of players and demonstrate that players with smaller heights are almost always players with positions that traditionally have a lot of assists like the Point Guard.
+min_lm <-lm(PTS ~ MIN ,data=final_raw)
+plot(final_raw$PTS ~ final_raw$MIN,
+main = "Points vs Minutes",
+xlab ="Minutes Per Game", ylab ="Points Per Game")
+abline(min_lm, col="blue", lwd = 4)
 
-I think that any analysis which gives an insight on which players are prone to producing the most points is always useful and an have impacts in many fields such as the world of sports gambling and especially fantasy sports. Although I am not a gambler myself, I am an aspiring actuary and data analyst and I find pleasure in being able to bring forth simple results from large complex datasets.
+fga_lm <-lm(PTS ~ FGA,data=final_raw)
+plot(final_raw$PTS ~ final_raw$FGA,
+main = "Points vs Field Goal Attempt",
+xlab ="Field Goal Attempts Per Game", ylab ="Points Per Game")
+abline(fga_lm, col="blue", lwd = 4)
+
+age_lm <-lm(PTS ~ AGE,data=final_raw)
+plot(final_raw$PTS ~ final_raw$AGE,
+main = "Points vs Age",
+xlab ="Age", ylab ="Points Per Game")
+abline(age_lm, col="blue", lwd = 4)
+
+x3pm_lm <-lm(PTS ~ X3PM,data=final_raw)
+plot(final_raw$PTS ~ final_raw$X3PM,
+main = "Points vs 3PM",
+xlab ="3PM Per Game", ylab ="Points Per Game")
+abline(x3pm_lm, col="blue", lwd =4)
+
+reb_lm <-lm(PTS ~ REB,data=final_raw)
+plot(final_raw$PTS ~ final_raw$REB,
+main = "Points vs Rebounds",
+xlab ="Rebounds Per Game", ylab ="Points Per Game")
+abline(reb_lm, col="blue", lwd = 4)
+
+```
+Clearly, we can see that for all the variables plotted above with the exception of age, there is a strong positive linear correlation between the variables and points. For this reason, we have decided that in section \@ref(Model) when we discuss the model that we come up with, we elected to solely use simple linear models.
 
 ## Population, Frame or Sample
 
-It is important to discuss the reach of our data as this will have an effect on the generalizability of our Model. 
-As previously mentioned, the City of Toronto funds services for people experience homelessness and the data we have acquired for this paper reflects all the data collected in the SMIS system in the years 2020 and 2021. This is important because it brings to light one of the first limitations of the data which we will discuss more in Section \@ref(limitations). Although the SMIS data is quite expansive with 323 data points, it fails to capture the entire population of homeless people in the city of Toronto as it does not take into consideration homeless people who sleep on the street or those only using services which are not government funded. Thus, in this paper, we are only deal with a sample of the population, but a big one nonetheless.
+It is important to discuss the reach of our data as this will have an effect on the generalizability of our Model. As previously stated, the data we have gathered is of all 540 players which were listed on any teams roster for the 2020-2021 season. As a result, I put forth the claim that the findings of this analysis will have strong generalizability and the model should be reliable to predict the scoring output of any player.
 
-
-
-
+\pagebreak
 # Model
+In this section, we will go through the process of sifting through the remaining variables to simplify our model slightly and come up with the final model. As we mentioned previously, we have split our data into two datasets: the training set and the test set. The first thing we wish to do is compare the two using summary statistics to see if we can observe any abnormalities or extreme differences between the data. Because we segregated the total data using a set seed, the process was absolutely random and thus we expect to see little to no difference between the two datasets. Below is a table displaying summary statistics for both datasets.
 
-\begin{equation}
-Pr(\theta | y) = \frac{Pr(y | \theta) Pr(\theta)}{Pr(y)}  (\#eq:bayes)
-\end{equation}
+<div style="text-align: center"> Table 2: Some summary data for the training and test data. </div>
+Variable | Mean (Standard Deviation) In Training | Mean (Standard Deviation) In Test
+---------|-------------------------|--------------------
+`r names(test_data)[3]` | `r round(mtr[1],5)` (`r round(sdtr[1],5)`) | `r round(mtest[1],5)` (`r round(sdtest[1],5)`)
+`r names(test_data)[4]` | `r round(mtr[2],5)` (`r round(sdtr[2],5)`) | `r round(mtest[2],5)` (`r round(sdtest[2],5)`)
 
-Equation \@ref(eq:bayes) seems useful, eh?
+As we can see from Table 2, the values for both the mean and the standard deviation of all the predictors are almost identical and there is little to no difference as expected.Now, to create a baseline for our model, lets create a model with all of the predictors. We call this model mod_full.
 
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
 
-We can use maths by including latex between dollar signs, for instance $\theta$.
+mod_full = lm(formula = PTS ~ AGE+MIN+FGA+X3PM+REB+AST+KG+CM, data = training_data)
+a = summary(mod_full)
+extract_eq(mod_full, wrap = TRUE)
+```
+When we run a summary of this mod_full, we can extract the R squared and the adjusted R squared. The adjusted R Squared is the value we will primarily be looking at as we know that when comparing simple linear models with different numbers of predictors, the adjusted R squared is the desired quantity and the simple R^2 will not provide valuable information.
+
+Model Name | R Squared | Adjusted R Squared
+---------|-------------------------|--------------------
+`r "mod_full"` | `r as.numeric(summary(mod_full)[8])`| `r as.numeric(summary(mod_full)[9])`
+
+We see that the adjusted R squared is equal to 97.18%. This is a very high number and after simplifying the model from 31 variables to only 8 variables, we did not lose much information.
+
+\pagebreak
+## Checking for Model Violations
+The next thing we will do is look for possible model violations. first, lets plot pairwise plots of the predictors and look for any possible evidence of colinearity.
+
+```{r, echo = F, out.width = '80%', fig.align = "center"}
+pairs(training_data[,-c(1:3)])
+```
+We see very clearly that there is a strong colinearity between minutes played and field goal attempts and between weight and height. We can also see that there is no significant linear relationship between the other pairs of variables. 
+
+Lets conduct another test to determine if we will need to transform our data (reponce and/or predictors).
+
+```{r}
+
+```
 
 
 # Results
+
+```{r}
+
+```
+
 
 # Discussion
 
